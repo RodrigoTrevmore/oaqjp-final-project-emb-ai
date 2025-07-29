@@ -13,4 +13,7 @@ def emotion_detector(text_to_analyze):
     formatted_response = json.loads(response.text)
 
     if response.status_code == 200:
-        return print(formatted_response)
+        new_response = formatted_response['emotionPredictions']
+        return print(new_response)
+    elif response.status_code != 200:
+        return print("somethig went grong")
