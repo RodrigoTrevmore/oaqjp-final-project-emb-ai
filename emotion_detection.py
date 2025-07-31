@@ -13,7 +13,9 @@ def emotion_detector(text_to_analyze):
     formatted_response = json.loads(response.text)
 
     if response.status_code == 200:
-        new_response = formatted_response['emotionPredictions']
-        return print(new_response)
+        new_reponse = formatted_response['emotionPredictions'][0]['emotion']
+        dominant_emotion = max(new_reponse, key=new_reponse.get)
+        new_reponse["dominant_emotion"] = dominant_emotion
+        return print(new_reponse)
     elif response.status_code != 200:
         return print("somethig went grong")
